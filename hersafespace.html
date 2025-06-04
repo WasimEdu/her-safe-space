@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Her Safe Space 💌</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-in;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff6ba1;
+      transform: rotate(45deg);
+      animation: floatHeart 8s linear infinite;
+      opacity: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff6ba1;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .container {
+      background: #ffe6f0;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+      max-width: 500px;
+      width: 100%;
+      border: 2px solid #ffc1cc;
+      margin: 5vh auto;
+      position: relative;
+      z-index: 2;
+      animation: riseUp 1.5s ease-out forwards;
+    }
+
+    @keyframes riseUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+      font-size: 1.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b03060;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: #b03060;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #f7c6d9;
+      border-radius: 10px;
+      font-size: 1rem;
+      resize: vertical;
+      background-color: #fff9fc;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #ff8fa3;
+      outline: none;
+      box-shadow: 0 0 5px #ffbdd0;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff4d94;
+      animation: pulse 0.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 1rem;
+      color: #c71585;
+      font-weight: 600;
+      display: none;
+    }
+
+    #afterSubmitQuote {
+      display: none;
+      text-align: center;
+      font-style: italic;
+      color: #5c005c;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      font-size: 1.05rem;
+      background: #fff0f8;
+      border-left: 4px solid #ffc1e3;
+      border-radius: 8px;
+    }
+
+    /* Center "Send Again" button */
+    .send-again-button {
+      display: block;
+      margin: 20px auto;
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .send-again-button:hover {
+      background-color: #ff4d94;
+      animation: pulse 0.6s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Heart Background -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDelay = Math.random() * 8 + "s";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.width = heart.style.height = 15 + Math.random() * 10 + "px";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="container" id="form-container">
+    <h2 id="greeting">Hi, My Moon 🌙</h2>
+    <p class="subtitle">This is your space. Whatever’s on your heart, I’m here to listen. Always. 💗  (Bol v de)</p>
+
+    <form id="safeForm" action="https://formspree.io/f/xanokoke" method="POST">
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required placeholder="A little headline..." />
+      </div>
+
+      <div>
+        <label for="problem">What's bothering you?</label>
+        <textarea id="problem" name="problem" rows="4" required placeholder="Mood kyu khrab hai???"></textarea>
+      </div>
+
+      <div>
+        <label for="solution">What could fix it?</label>
+        <textarea id="solution" name="solution" rows="3" placeholder="A kitkat can fix it"></textarea>
+      </div>
+
+      <button type="submit">Send it to Me 💌</button>
+      <p class="message" id="thankYouMessage">🌷 Thank you for opening your heart.</p>
+      <p class="quote" id="afterSubmitQuote"></p>
+    </form>
+  </div>
+
+  <script>
+    // Nickname logic
+    const nicknames = ["Pookiemon🎀 ", " MY Lill Gurl 😘", "Sunshine 🌞", "Pokemon 😉", "Pikachu 😁"];
+    const greeting = document.getElementById("greeting");
+    const randomNickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+    greeting.textContent = `Hi, ${randomNickname}`;
+
+    // Shayari / Love notes
+    const loveNotes = [
+      "💌 \"Will you be my Seven minutes?\"",
+      "🌸 \"I will write you so deeply in my WORDS that the one who READERS will beg to See YOU..!!! \"",
+      "🥹 \"Nothing makes a room fell emptier than wanting YOU in it..!!\"",
+      "💖 \"If I could give one thing in life I would give you the ability to see yourself through my eyes. Because only then would you realize how special, gorgeous, cute and hot you are to me...!!!",
+      "👀 \"Teri surat se hai alam me baharo ka sawad. Teri ankho ke siwa duniya me rakha kya hai..?\"",
+      "💓 \"How do i say 'I Miss You' in a way that will make your heart ache as mine does..!\"",
+      "🎨 \"Even the room is filled with arts, i would still look at you!\"",
+      "🌙 \"The moon is beautiful isn't it?\"",
+      "😏 \"Alphabet starts with A B C, numbers starts with 1 2 3 so is it okay if love starts wit YOU and ME?\"",
+      "👀 \"Sitaro se bhari hui raate passand hai dur se suni uski baate passand hai tarif ke layak hai uske baal v par mujhe sabse jayda uski ankhe passand hai.\"",
+      "💞 \"Log roop deakhte hai hum dil deakhte hai log sapna deakhte hai hum tumhe deakhte hai bas farq itna hai log puri duniya deakhte hai hum puri duniya me bastumhe deakhte hai\"",
+      "😊 \"Kaha se laun wo lafz jo tujhe sunai de Duniya deakhe chand ko mujhe tu dikhai de.\"",
+      "🫠 \"Agar hona chahu tera, tum hone dogi kya? Rona chahu tere pass tum rone dogi kya? Chain nahi mil raha, aab mujhe kahi pe, Tum apni bahon me chain se sone dogi kya?! \"",
+      "💗 \"Mai ishq kahu tu aapna naam smajhna, Mai jhulfay kahu tu apne baal smajhna, Mai suraj kahu tu apni ankhe smajhna, Mai chand kahu, tu apni muskan smajhna, Mai ghar kahu tu apni bahe smajhna, Mai sukoon kahu to tu apna ehsaas smajhna, Aur agar mai ishq kahu to tu apna naam smajhna.\"",
+      "👀 \"Tere husn ka jab deedar hua, Naa jane mai kon sa kirdar hua, Tere inn nashili ankho se haa Mujhe zara pyar hua\"",
+      "🫠 \"Aisa pehli bar hua hai 19 salo me Din raat duba hu sirf tumhare hi khayalo me\"",
+      "🫂 \"Kash ek Khawashis puri ho ibadat ke bagair ek roz tum humare gale lago humari izazat ke bagair\"",
+      "😁 \"Mai tod leta hai agar tu gulab hoti, Mai jawab ban jata agar tu sawal hoti, Sab jante hai mai nasha nhi karta, par Pee leta thodi agar tu sarab hoti..!!\"",
+    ];
+
+    const form = document.getElementById('safeForm');
+    const message = document.getElementById('thankYouMessage');
+    const afterSubmitQuote = document.getElementById('afterSubmitQuote');
+    const formContainer = document.getElementById('form-container');
+
+    function typeWriter(text, element, speed = 45) {
+      element.textContent = '';
+      let i = 0;
+      element.style.display = 'block';
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          formContainer.innerHTML = `
+            <h2>Thank you, Pooke! 💌</h2>
+            <p class="subtitle">Your words mean the world to me.</p>
+            <p class="quote" id="afterSubmitQuote"></p>
+            <button class="send-again-button" id="sendAgainButton">Send Again</button>
+          `;
+          const randomNote = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+          setTimeout(() => {
+            const newQuoteElement = document.getElementById('afterSubmitQuote');
+            typeWriter(randomNote, newQuoteElement, 50);
+           }, 0);
+
+
+          const sendAgainButton = document.getElementById('sendAgainButton');
+          sendAgainButton.addEventListener('click', function() {
+            window.location.reload();
+          });
+        } else {
+          alert("Oops! Something went wrong.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
